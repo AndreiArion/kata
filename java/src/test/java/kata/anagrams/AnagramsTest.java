@@ -47,13 +47,13 @@ public class AnagramsTest {
     @Test
     public void shouldHaveDecentPerformance() {
         long initTime = System.currentTimeMillis();
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 10000; i++) {
             anagrams.computeAnagrams(piecrust, alternativesList);
         }
         long duration = System.currentTimeMillis() - initTime;
         System.out.println("Took:" + duration + " ms.");
-        assertThat(duration).isLessThan(70);// functional implementation passes this
-        assertThat(duration).isLessThan(40);// functional implementation does not pass this - typical 50ms
+        assertThat(duration).isLessThan(700);// functional implementation passes this
+        assertThat(duration).isLessThan(300);// functional implementation does not pass this - typical 50ms
     }
 
 
