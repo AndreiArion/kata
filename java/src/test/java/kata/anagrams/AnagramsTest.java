@@ -44,4 +44,16 @@ public class AnagramsTest {
         assertThat(anagrams.computeAnagrams(piecrust, alternativesList)).doesNotContain(wrong);
     }
 
+    @Test
+    public void shouldHaveDecentPerformance() {
+        long initTime = System.currentTimeMillis();
+        for (int i = 0; i < 1000; i++) {
+            anagrams.computeAnagrams(piecrust, alternativesList);
+        }
+        long duration = System.currentTimeMillis() - initTime;
+        System.out.println("Took:" + duration + " ms");
+        assertThat(duration).isLessThan(10);
+    }
+
+
 }

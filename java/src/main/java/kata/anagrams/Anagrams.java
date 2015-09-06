@@ -21,7 +21,6 @@ public class Anagrams {
         List<Character> alternativeCharacters = alternative.chars().mapToObj(e -> (char) e).collect(Collectors.toList());
         List<Character> sortedWordLetters = wordCharacters.stream().sorted().collect(Collectors.toList());
         List<Character> sortedAlternativeLetters = alternativeCharacters.stream().sorted().collect(Collectors.toList());
-        System.out.println(sortedWordLetters + ":" + sortedAlternativeLetters);
         return sortedWordLetters.equals(sortedAlternativeLetters);
     }
 }
