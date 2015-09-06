@@ -1,5 +1,6 @@
 package kata.anagrams;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Collections;
@@ -10,7 +11,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class AnagramsTest {
     Anagrams anagrams = new Anagrams();
+    Set<String> alternativesList = new HashSet<>();
+    String piecrust = "piecrust";
 
+
+    @Before
+    public void setUp() {
+        alternativesList.add("crepitus");
+        alternativesList.add("cuprites");
+        alternativesList.add(piecrust);
+    }
 
     @Test
     public void shouldReturnEmptyForEmptyWord(){
@@ -24,22 +34,14 @@ public class AnagramsTest {
 
     @Test
     public void shouldReturnCorrectResult() {
-        Set<String> alternativesList = new HashSet<>();
-        alternativesList.add("crepitus");
-        alternativesList.add("cuprites");
-        alternativesList.add("piecrust");
-        assertThat(anagrams.computeAnagrams("piecrust", alternativesList)).isEqualTo(alternativesList);
+        assertThat(anagrams.computeAnagrams(piecrust, alternativesList)).isEqualTo(alternativesList);
     }
 
     @Test
     public void shouldNotReturnNonAnagrams() {
-        Set<String> alternativesList = new HashSet<>();
-        alternativesList.add("crepitus");
-        alternativesList.add("cuprites");
-        alternativesList.add("piecrust");
         String wrong = "wrong";
         alternativesList.add(wrong);
-        assertThat(anagrams.computeAnagrams("piecrust", alternativesList)).doesNotContain(wrong);
+        assertThat(anagrams.computeAnagrams(piecrust, alternativesList)).doesNotContain(wrong);
     }
 
 }
