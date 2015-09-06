@@ -51,8 +51,9 @@ public class AnagramsTest {
             anagrams.computeAnagrams(piecrust, alternativesList);
         }
         long duration = System.currentTimeMillis() - initTime;
-        System.out.println("Took:" + duration + " ms");
-        assertThat(duration).isLessThan(10);
+        System.out.println("Took:" + duration + " ms.");
+        assertThat(duration).isLessThan(70);// functional implementation passes this
+        assertThat(duration).isLessThan(40);// functional implementation does not pass this - typical 50ms
     }
 
 
