@@ -10,7 +10,7 @@ import java.util.Set;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AnagramsTest {
-    Anagrams anagrams = new Anagrams();
+    IAnagrams IAnagrams = new AnagramsNaiveV1();
     Set<String> alternativesList = new HashSet<>();
     String piecrust = "piecrust";
 
@@ -24,31 +24,31 @@ public class AnagramsTest {
 
     @Test
     public void shouldReturnEmptyForEmptyWord(){
-        assertThat(anagrams.computeAnagrams("", Collections.<String>emptySet())).isEmpty();
+        assertThat(IAnagrams.computeAnagrams("", Collections.<String>emptySet())).isEmpty();
     }
 
     @Test
     public void shouldReturnNullIfNullInputs() {
-        assertThat(anagrams.computeAnagrams(null, null)).isEqualTo(null);
+        assertThat(IAnagrams.computeAnagrams(null, null)).isEqualTo(null);
     }
 
     @Test
     public void shouldReturnCorrectResult() {
-        assertThat(anagrams.computeAnagrams(piecrust, alternativesList)).isEqualTo(alternativesList);
+        assertThat(IAnagrams.computeAnagrams(piecrust, alternativesList)).isEqualTo(alternativesList);
     }
 
     @Test
     public void shouldNotReturnNonAnagrams() {
         String wrong = "wrong";
         alternativesList.add(wrong);
-        assertThat(anagrams.computeAnagrams(piecrust, alternativesList)).doesNotContain(wrong);
+        assertThat(IAnagrams.computeAnagrams(piecrust, alternativesList)).doesNotContain(wrong);
     }
 
     @Test
     public void shouldHaveDecentPerformance() {
         long initTime = System.currentTimeMillis();
         for (int i = 0; i < 10000; i++) {
-            anagrams.computeAnagrams(piecrust, alternativesList);
+            IAnagrams.computeAnagrams(piecrust, alternativesList);
         }
         long duration = System.currentTimeMillis() - initTime;
         System.out.println("Took:" + duration + " ms.");
